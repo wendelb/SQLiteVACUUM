@@ -7,6 +7,12 @@ namespace SQLiteVACUUM
     {
         static void Main(string[] args)
         {
+            if (args.Length == 0)
+            {
+                showUsage();
+                return;
+            }
+
             foreach(string arg in args)
             {
                 if (File.Exists(arg)) {
@@ -24,6 +30,13 @@ namespace SQLiteVACUUM
             // In Debug-Mode, pause at this point.
             System.Console.ReadLine();
 #endif
+        }
+
+        private static void showUsage()
+        {
+            PrintError("SQLiteVACUUM - vacuums a SQLite-Database");
+            PrintError("Usage: SQLiteVACUUM.exe database_file.db [database_file2.db ...]");
+            PrintError("");
         }
 
         private static void PrintError(string message)
